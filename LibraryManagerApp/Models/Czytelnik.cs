@@ -16,12 +16,15 @@ namespace LibraryManagerApp.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-
+        [Phone]
         public string? Telefon { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DataRejestracji { get; set; }
 
         public bool Aktywny { get; set; }
+
+        //nawigacyjna właściwość dla EF Core
+        public ICollection<Wypozyczenie> listaWypozyczen { get; set; }
     }
 }

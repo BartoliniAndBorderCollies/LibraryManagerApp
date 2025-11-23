@@ -3,37 +3,37 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagerApp.Models
 {
-    public class Wypozyczenie
+    public class Rental
     {
         [Key]
         [Column("id_wypozyczenia")]
-        public int IdWypozyczenia { get; set; }
+        public int RentalId { get; set; }
 
         [ForeignKey("Czytelnik")]
         [Column("id_czytelnika")]
-        public int IdCzytelnika { get; set; }
+        public int ReaderId { get; set; }
 
-        [ForeignKey("Ksiazka")]
+        [ForeignKey("Book")]
         [Column("id_ksiazki")]
-        public int IdKsiazki { get; set; }
+        public int BookId { get; set; }
 
         [Column("data_wypozyczenia")]
         [DataType(DataType.Date)]
-        public DateTime DataWypozyczenia { get; set; }
+        public DateTime RentalDate { get; set; }
 
         [Column("data_terminu")]
         [DataType(DataType.Date)]
-        public DateTime DataTerminu { get; set; }
+        public DateTime DeadlineTime { get; set; }
 
         [Column("data_zwrotu")]
         [DataType(DataType.Date)]
-        public DateTime? DataZwrotu { get; set; } //wypozyczenie moze nie byc jeszccze zwrocone, wiec powinno buc tu nullable
+        public DateTime? ReturnDate { get; set; } //wypozyczenie moze nie byc jeszccze zwrocone, wiec powinno buc tu nullable
 
         [Column("oplata")]
-        public double Oplata { get; set; }
+        public double Fee { get; set; }
 
         //nawigacyjna właściwość dla EF Core
-        public Czytelnik Czytelnik { get; set; }
-        public Ksiazka Ksiazka { get; set; }
+        public Reader? Reader { get; set; }
+        public Book? Book { get; set; }
     }
 }

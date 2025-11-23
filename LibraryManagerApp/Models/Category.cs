@@ -3,17 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryManagerApp.Models
 {
-    public class Kategoria
+    public class Category
     {
         [Key]
         [Column("id_kategorii")]
-        public int IdKategorii { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
-        public string Nazwa {  get; set; }
+        [Column("Nazwa")]
+        public string Name {  get; set; }
 
         //nawigacyjna wlasciwosc
-        public ICollection<Ksiazka> listaKsiazek { get; set; }
+        public ICollection<Book> BooksList { get; set; }
         
     }
 }

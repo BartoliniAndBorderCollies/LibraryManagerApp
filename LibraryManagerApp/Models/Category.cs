@@ -11,7 +11,7 @@ namespace LibraryManagerApp.Models
 
         [Required]
         [Column("Nazwa")]
-        public string Name {  get; set; }
+        public string Name { get; set; }
 
         //nawigacyjna wlasciwosc
         public ICollection<Book> BooksList { get; set; }

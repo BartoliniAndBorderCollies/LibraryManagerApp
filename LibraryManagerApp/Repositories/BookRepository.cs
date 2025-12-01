@@ -42,14 +42,26 @@ namespace LibraryManagerApp.Repositories
 
         }
 
-        public Task<Book?> GetByIdAsync(int id)
+        public async Task<Book?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _libraryContext.Books.FindAsync(id);
+
         }
 
-        public Task<Book?> UpdateAsync(int id, Book entity)
+        public async Task<Book?> UpdateAsync(int id, Book entity)
         {
-            throw new NotImplementedException();
+            Book? book = await _libraryContext.Books.FindAsync(id);
+
+            if (book == null)
+            {
+
+                return null; //ten null bedzie obsłuzony w serwisie 
+            }
+
+            _libraryContext.Entry(book).CurrentValues.SetValues(entity);
+            await _libraryContext.SaveChangesAsync();
+
+            return book;
         }
     }
 }

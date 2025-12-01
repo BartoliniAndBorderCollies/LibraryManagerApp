@@ -5,10 +5,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 //ustawiam SQLServer jako silnik bazy i rejestrujê klasê LibraryContext do Depenendy Injection
 //pobiera connection string z DefaultConnection (w pliku appsetting.json)
 builder.Services.AddDbContext<LibraryContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 

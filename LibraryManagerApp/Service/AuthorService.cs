@@ -34,14 +34,31 @@ namespace LibraryManagerApp.Service
             return authorRepository.GetAllAsync();
         }
 
-        public Task<Author?> GetByIdAsync(int id)
+        public async Task<Author> GetByIdAsync(int id)
         {
-            return authorRepository.GetByIdAsync(id);
+
+            Author? author = await authorRepository.GetByIdAsync(id);
+
+            if (author == null)
+                throw new KeyNotFoundException($"Author with id: {id} - was not found");
+
+            return author;
+            
         }
 
-        public Task<Author?> UpdateAsync(int id, Author entity)
+        public async Task<Author> UpdateAsync(int id, Author entity)
         {
-            return authorRepository.UpdateAsync(id, entity);
+            Author? existingAuthor = await authorRepository.GetByIdAsync(id);
+
+            if (existingAuthor == null)
+                throw new KeyNotFoundException($"Author with id: {id} - was not found");
+
+            Author? updated = await authorRepository.UpdateAsync(id, entity);
+
+            if (updated == null)
+                throw new InvalidOperationException("Failed to update the author!");
+
+            return updated;
         }
     }
 }

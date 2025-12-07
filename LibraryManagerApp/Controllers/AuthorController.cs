@@ -1,4 +1,5 @@
 ﻿using LibraryManagerApp.Models;
+using LibraryManagerApp.Models.ViewModels;
 using LibraryManagerApp.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,17 @@ namespace LibraryManagerApp.Controllers
             this.AuthorService = authorService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var authors = await AuthorService.GetAllAsync();
+
+            var viewModel = new AuthorIndexViewModel
+            {
+                Authors = authors.ToList(),
+                NewAuthor = new Author()
+            };
+
+            return View(viewModel);
         }
 
 

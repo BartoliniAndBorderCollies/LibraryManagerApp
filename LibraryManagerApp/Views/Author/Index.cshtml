@@ -1,0 +1,48 @@
+﻿@model LibraryManagerApp.Models.ViewModels.AuthorIndexViewModel
+
+
+@{
+    ViewData["Title"] = "Lista autorów";
+}
+
+<h3>Dodaj nowego autora</h3>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="NewAuthor.FirstName">Imię</label>
+        <input asp-for="NewAuthor.FirstName" class="form-control" name="FirstName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NewAuthor.LastName">Nazwisko</label>
+        <input asp-for="NewAuthor.LastName" class="form-control" name="LastName" />
+    </div>
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+</form>
+
+
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model.Authors)
+        {
+            <tr>
+                <td>@author.FirstName</td>
+                <td>@author.LastName</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@author.Id">Szczegóły</a> |
+                    <a asp-action="Edit" asp-route-id="@author.Id">Edytuj</a> |
+                    <a asp-action="Delete" asp-route-id="@author.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

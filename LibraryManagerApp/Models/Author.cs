@@ -7,7 +7,7 @@ namespace LibraryManagerApp.Models
     {
         [Key]
         [Column("id_autora")]
-        public int AuthorId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Column("imie")]

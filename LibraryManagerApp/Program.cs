@@ -1,10 +1,15 @@
 using LibraryManagerApp.Models.EFCoreMapping;
+using LibraryManagerApp.Repositories;
+using LibraryManagerApp.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<AuthorService>();
+builder.Services.AddScoped<AuthorRepository>();
+
 
 //ustawiam SQLServer jako silnik bazy i rejestrujê klasê LibraryContext do Depenendy Injection
 //pobiera connection string z DefaultConnection (w pliku appsetting.json)

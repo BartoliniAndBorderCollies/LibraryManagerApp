@@ -34,7 +34,7 @@ namespace LibraryManagerApp.Service
             return bookRepository.GetAllAsync();
         }
 
-        public async Task<Book?> GetByIdAsync(int id)
+        public async Task<Book> GetByIdAsync(int id)
         {
             Book? book = await bookRepository.GetByIdAsync(id);
 
@@ -44,7 +44,7 @@ namespace LibraryManagerApp.Service
             return book;
         }
 
-        public async Task<Book?> UpdateAsync(int id, Book entity)
+        public async Task<Book> UpdateAsync(int id, Book entity)
         {
 
             Book? updatedBook = await bookRepository.UpdateAsync(id, entity);

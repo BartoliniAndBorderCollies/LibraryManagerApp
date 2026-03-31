@@ -6,7 +6,7 @@ namespace LibraryManagerApp.Service
     public class AuthorService : IService<Author>
     {
 
-        public readonly AuthorRepository authorRepository;
+        private readonly AuthorRepository authorRepository;
 
         public AuthorService(AuthorRepository authorRepository)
         {
@@ -48,15 +48,11 @@ namespace LibraryManagerApp.Service
 
         public async Task<Author> UpdateAsync(int id, Author entity)
         {
-            Author? existingAuthor = await authorRepository.GetByIdAsync(id);
-
-            if (existingAuthor == null)
-                throw new KeyNotFoundException($"Author with id: {id} - was not found");
-
+      
             Author? updated = await authorRepository.UpdateAsync(id, entity);
 
             if (updated == null)
-                throw new InvalidOperationException("Failed to update the author!");
+                throw new KeyNotFoundException($"Author with id: {id} was not found");
 
             return updated;
         }

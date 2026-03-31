@@ -3,6 +3,8 @@ using LibraryManagerApp.Repositories;
 using LibraryManagerApp.Service;
 using Microsoft.EntityFrameworkCore;
 
+
+//to automatycznie odpala Kestrela
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

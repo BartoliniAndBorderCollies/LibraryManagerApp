@@ -1,4 +1,5 @@
-﻿using LibraryManagerApp.Models;
+﻿using LibraryManagerApp.Exceptions;
+using LibraryManagerApp.Models;
 using LibraryManagerApp.Repositories;
 
 namespace LibraryManagerApp.Service
@@ -40,7 +41,7 @@ namespace LibraryManagerApp.Service
             Author? author = await authorRepository.GetByIdAsync(id);
 
             if (author == null)
-                throw new KeyNotFoundException($"Author with id: {id} - was not found");
+                throw new NotFoundInDatabaseException($"Author with id: {id} was not found");
 
             return author;
             
@@ -52,7 +53,7 @@ namespace LibraryManagerApp.Service
             Author? updated = await authorRepository.UpdateAsync(id, entity);
 
             if (updated == null)
-                throw new KeyNotFoundException($"Author with id: {id} was not found");
+                throw new NotFoundInDatabaseException($"Author with id: {id} was not found");
 
             return updated;
         }

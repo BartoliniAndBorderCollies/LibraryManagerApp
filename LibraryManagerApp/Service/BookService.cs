@@ -6,7 +6,7 @@ namespace LibraryManagerApp.Service
     public class BookService : IService<Book>
     {
 
-        private readonly BookRepository bookRepository;
+        private readonly IRepository<Book> bookRepository;
 
         public BookService(BookRepository bookRepository)
         {

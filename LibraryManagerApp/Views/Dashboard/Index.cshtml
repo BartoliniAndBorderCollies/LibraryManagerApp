@@ -6,13 +6,14 @@
     <aside class="dashboard-sidebar">
         <h2>Library Panel</h2>
 
-        <button class="dashboard-btn">Dashboard</button>
-        <button class="dashboard-btn">Authors</button>
-        <button class="dashboard-btn">Books</button>
-        <button class="dashboard-btn">Categories</button>
-        <button class="dashboard-btn">Readers</button>
-        <button class="dashboard-btn logout-btn">Logout</button>
+        <a asp-controller="Dashboard" asp-action="Index" class="dashboard-btn menu-link">Dashboard</a>
+        <a asp-controller="Author" asp-action="Index" class="dashboard-btn menu-link">Authors</a>
+        <a href="#" class="dashboard-btn menu-link">Books</a>
+        <a href="#" class="dashboard-btn menu-link">Categories</a>
+        <a href="#" class="dashboard-btn menu-link">Readers</a>
+        <a asp-controller="Home" asp-action="Index" class="dashboard-btn logout-btn menu-link">Logout</a>
     </aside>
+    
 
     <section class="dashboard-content">
         <img src="~/images/library main.png" alt="Library" class="dashboard-image" />

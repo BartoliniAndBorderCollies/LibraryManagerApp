@@ -1,4 +1,5 @@
-﻿using LibraryManagerApp.Models;
+﻿using LibraryManagerApp.Exceptions;
+using LibraryManagerApp.Models;
 using LibraryManagerApp.Models.ViewModels;
 using LibraryManagerApp.Service;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +9,7 @@ namespace LibraryManagerApp.Controllers
 {
     public class AuthorController : Controller
     {
-        public readonly AuthorService AuthorService;
+        private readonly AuthorService AuthorService;
 
         public AuthorController(AuthorService authorService)
         {
@@ -53,24 +54,16 @@ namespace LibraryManagerApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var authors = await AuthorService.GetAllAsync();
-            return View("Index", authors);
-
-        }
-
-        [HttpGet]
         public async Task<IActionResult> GetById(int id)
         {
 
             try
             {
-                Author? author = await AuthorService.GetByIdAsync(id);
+                Author author = await AuthorService.GetByIdAsync(id);
                 return View("Details", author);
 
             }
-            catch (KeyNotFoundException ex)
+            catch (NotFoundInDatabaseException ex)
             {
                 TempData["Error"] = ex.Message;
                 return RedirectToAction("Index");
@@ -83,11 +76,11 @@ namespace LibraryManagerApp.Controllers
 
             try
             {
-                Author? updatedAuthor = await AuthorService.UpdateAsync(id, entity);
+                Author updatedAuthor = await AuthorService.UpdateAsync(id, entity);
                 return View("Details", updatedAuthor);
 
             }
-            catch (KeyNotFoundException ex)
+            catch (NotFoundInDatabaseException ex)
             {
                 TempData["Error"] = ex.Message;
                 return RedirectToAction("Index");

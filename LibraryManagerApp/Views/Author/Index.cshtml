@@ -26,6 +26,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Akcje</th>
@@ -35,6 +36,7 @@
         @foreach (var author in Model.Authors)
         {
             <tr>
+                <td>@author.Id</td>
                 <td>@author.FirstName</td>
                 <td>@author.LastName</td>
                 <td>

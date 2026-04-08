@@ -105,4 +105,11 @@ body {
 
 .menu-link {
     text-decoration: none;
+    color: white;
+}
+
+.menu-link:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #7a4d2c;
 }

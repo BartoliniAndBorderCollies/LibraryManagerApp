@@ -7,7 +7,7 @@ namespace LibraryManagerApp.Repositories
     public class CategoryRepository : IRepository<Category>
     {
 
-        public readonly LibraryContext _libraryContext;
+        private readonly LibraryContext _libraryContext;
 
         public CategoryRepository(LibraryContext libraryContext)
         {
@@ -28,10 +28,16 @@ namespace LibraryManagerApp.Repositories
             await _libraryContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Category category)
+        public async Task<bool> DeleteAsync(int id)
         {
+            Category? category = await _libraryContext.Categories.FindAsync(id);
+
+            if (category == null)
+                return false;
+
             _libraryContext.Categories.Remove(category);
             await _libraryContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()

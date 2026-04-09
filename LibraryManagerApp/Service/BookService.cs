@@ -1,4 +1,5 @@
-﻿using LibraryManagerApp.Models;
+﻿using LibraryManagerApp.Exceptions;
+using LibraryManagerApp.Models;
 using LibraryManagerApp.Repositories;
 
 namespace LibraryManagerApp.Service
@@ -24,9 +25,12 @@ namespace LibraryManagerApp.Service
             return bookRepository.DeleteAllAsync();
         }
 
-        public Task DeleteAsync(Book entity)
+        public async Task DeleteAsync(int id)
         {
-            return bookRepository.DeleteAsync(entity);
+            bool deleted = await bookRepository.DeleteAsync(id);
+
+            if(!deleted)
+                throw new NotFoundInDatabaseException($"Book with id: {id} was not found");
         }
 
         public Task<IEnumerable<Book>> GetAllAsync()

@@ -50,7 +50,11 @@
 						<td>
 							<a asp-action="Details" asp-route-id="@author.Id">Szczegóły</a> |
 							<a asp-action="Edit" asp-route-id="@author.Id">Edytuj</a> |
-							<a asp-action="Delete" asp-route-id="@author.Id">Usuń</a>
+							<form asp-action="Delete" method="post" style="display:inline;">
+								@Html.AntiForgeryToken()
+								<input type="hidden" name="id" value="@author.Id" />
+								<button type="submit" class="btn btn-link p-0">Usuń</button>
+							</form>
 						</td>
 					</tr>
 				}

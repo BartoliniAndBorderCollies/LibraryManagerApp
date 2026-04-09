@@ -46,10 +46,20 @@ namespace LibraryManagerApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(Author entity)
+        public async Task<IActionResult> Delete(int id)
         {
-            await AuthorService.DeleteAsync(entity);
-            return RedirectToAction("Index");
+            try
+            {
+                await AuthorService.DeleteAsync(id);
+                return RedirectToAction("Index");
+            }
+            catch(NotFoundInDatabaseException ex)
+            {
+
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Index");
+
+            }
 
         }
 

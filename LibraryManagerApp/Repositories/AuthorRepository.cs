@@ -27,10 +27,16 @@ namespace LibraryManagerApp.Repositories
             await _libraryContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Author entity)
+        public async Task<bool> DeleteAsync(int id)
         {
-            _libraryContext.Authors.Remove(entity);
+            Author? author = await _libraryContext.Authors.FindAsync(id);
+
+            if (author == null)
+                return false; //serwis zadecyduje co dalej
+
+            _libraryContext.Authors.Remove(author);
             await _libraryContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Author>> GetAllAsync()

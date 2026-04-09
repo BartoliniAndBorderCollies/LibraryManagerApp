@@ -7,7 +7,7 @@ namespace LibraryManagerApp.Repositories
     public class ReaderRepository : IRepository<Reader>
     {
 
-        public readonly LibraryContext _libraryContext;
+        private readonly LibraryContext _libraryContext;
 
         public ReaderRepository(LibraryContext libraryContext)
         {
@@ -29,10 +29,16 @@ namespace LibraryManagerApp.Repositories
             await _libraryContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Reader entity)
+        public async Task<bool> DeleteAsync(int id)
         {
-            _libraryContext.Readers.Remove(entity);
+            Reader? reader = await _libraryContext.Readers.FindAsync(id);
+
+            if(reader == null)
+                return false;
+
+            _libraryContext.Readers.Remove(reader);
             await _libraryContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Reader>> GetAllAsync()

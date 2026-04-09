@@ -30,10 +30,16 @@ namespace LibraryManagerApp.Repositories
             await _libraryContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Book book)
+        public async Task<bool> DeleteAsync(int id)
         {
+            Book? book = await _libraryContext.Books.FindAsync(id);
+
+            if (book == null)
+                return false;
+
             _libraryContext.Books.Remove(book);
             await _libraryContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Book>> GetAllAsync()

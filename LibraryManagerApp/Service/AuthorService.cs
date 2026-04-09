@@ -25,9 +25,12 @@ namespace LibraryManagerApp.Service
             return authorRepository.DeleteAllAsync();
         }
 
-        public Task DeleteAsync(Author entity)
+        public async Task DeleteAsync(int id)
         {
-            return authorRepository.DeleteAsync(entity);
+            bool deleted = await authorRepository.DeleteAsync(id);
+
+            if (!deleted)
+                throw new NotFoundInDatabaseException($"Author with id: {id} was not found");
         }
 
         public Task<IEnumerable<Author>> GetAllAsync()

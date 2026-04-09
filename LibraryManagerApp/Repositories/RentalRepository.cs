@@ -7,7 +7,7 @@ namespace LibraryManagerApp.Repositories
     public class RentalRepository : IRepository<Rental>
     {
 
-        public readonly LibraryContext _libraryContext;
+        private readonly LibraryContext _libraryContext;
 
 
         public RentalRepository(LibraryContext libraryContext)
@@ -29,10 +29,16 @@ namespace LibraryManagerApp.Repositories
             await _libraryContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Rental entity)
+        public async Task<bool> DeleteAsync(int id)
         {
-            _libraryContext.Rentals.Remove(entity);
+            Rental? rental = await _libraryContext.Rentals.FindAsync(id);
+
+            if (rental == null)
+                return false;
+
+            _libraryContext.Rentals.Remove(rental);
             await _libraryContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Rental>> GetAllAsync()

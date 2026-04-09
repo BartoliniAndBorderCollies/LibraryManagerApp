@@ -53,7 +53,7 @@
 							<form asp-action="Delete" method="post" style="display:inline;">
 								@Html.AntiForgeryToken()
 								<input type="hidden" name="id" value="@author.Id" />
-								<button type="submit" class="btn btn-link p-0">Usuń</button>
+								<button type="submit" class="btn btn-link p-0" onclick="return confirm('Czy na pewno chcesz usunąć tego autora?')">Usuń</button>
 							</form>
 						</td>
 					</tr>

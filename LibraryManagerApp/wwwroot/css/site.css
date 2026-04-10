@@ -155,18 +155,17 @@ body {
     margin-right: auto;
 }
 
-/*konfiguracja buttona dodaj, kolor, margines itd*/
-.author-form-box .btn-primary {
+/*konfiguracja buttonów dla ca³ej strony Authors */
+.author-action-btn {
     background-color: #7a4d2c;
     border-color: #7a4d2c;
     margin-top: 12px;
 }
 
-.author-form-box .btn-primary:hover {
+.author-action-btn:hover {
     background-color: #5c3b22;
     border-color: #5c3b22;
 }
-
 
 .authors-table-box {
     background-color: rgba(255, 255, 255, 0.78);
@@ -180,4 +179,8 @@ body {
 
 .authors-table-box table tbody tr:hover td {
     background-color: rgba(139, 109, 74, 0.28);
+}
+
+.author-btn-secondary {
+    margin-top: 12px;
 }

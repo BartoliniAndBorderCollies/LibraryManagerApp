@@ -21,7 +21,7 @@
 				<label asp-for="NewAuthor.LastName">Nazwisko</label>
 				<input asp-for="NewAuthor.LastName" class="form-control" name="LastName" />
 			</div>
-			<button type="submit" class="btn btn-primary">Dodaj</button>
+			<button type="submit" class="btn btn-primary author-action-btn">Dodaj</button>
 		</form>
 
 	</div>
@@ -49,7 +49,6 @@
 						<td>@author.LastName</td>
 						<td>
 							<a asp-action="Details" asp-route-id="@author.Id">Szczegóły</a> |
-							<a asp-action="Edit" asp-route-id="@author.Id">Edytuj</a> |
 							<form asp-action="Delete" method="post" style="display:inline;">
 								@Html.AntiForgeryToken()
 								<input type="hidden" name="id" value="@author.Id" />

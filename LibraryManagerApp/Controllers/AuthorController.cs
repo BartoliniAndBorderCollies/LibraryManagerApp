@@ -53,7 +53,7 @@ namespace LibraryManagerApp.Controllers
                 await AuthorService.DeleteAsync(id);
                 return RedirectToAction("Index");
             }
-            catch(NotFoundInDatabaseException ex)
+            catch (NotFoundInDatabaseException ex)
             {
 
                 TempData["Error"] = ex.Message;
@@ -64,8 +64,10 @@ namespace LibraryManagerApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> Details(int id, bool editMode = false)
         {
+
+            ViewBag.EditMode = editMode;
 
             try
             {

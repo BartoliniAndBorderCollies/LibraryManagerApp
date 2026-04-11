@@ -184,3 +184,40 @@ body {
 .author-btn-secondary {
     margin-top: 12px;
 }
+
+.books-page {
+    min-height: calc(100vh - 60px);
+    padding: 30px;
+    background-image: url('/images/books.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.books-table-box {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 16px;
+}
+
+/* overlay */
+.books-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: 0;
+}
+
+/* ¿eby treœæ by³a nad overlay */
+.books-page > * {
+    position: relative;
+    z-index: 1;
+}

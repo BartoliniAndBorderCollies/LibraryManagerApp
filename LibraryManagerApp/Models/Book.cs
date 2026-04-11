@@ -22,7 +22,8 @@ namespace LibraryManagerApp.Models
         [Column("liczba_stron")]
         public int PagesNumber {  get; set; }
 
-        public bool Dostepna { get; set; }
+        [Column("dostepna")]
+        public bool Available { get; set; }
 
         [ForeignKey("Category")]
         [Column("id_kategorii")]

@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AuthorService>();
 builder.Services.AddScoped<AuthorRepository>();
+builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<BookRepository>();
 
 
 //ustawiam SQLServer jako silnik bazy i rejestrujê klasê LibraryContext do Depenendy Injection

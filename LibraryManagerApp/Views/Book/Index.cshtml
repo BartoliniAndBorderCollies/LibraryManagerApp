@@ -1,0 +1,39 @@
+﻿@model LibraryManagerApp.Models.ViewModels.BookIndexViewModel
+
+@{
+	ViewData["Title"] = "Books";
+}
+
+<section class="books-page">
+
+	<div class="books-table-box">
+		<h2>Lista książek</h2>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Tytuł</th>
+					<th>Rok wydania</th>
+					<th>ISBN</th>
+					<th>Liczba stron</th>
+					<th>Dostępna</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var book in Model.Books)
+				{
+					<tr>
+						<td>@book.BookId</td>
+						<td>@book.Title</td>
+						<td>@book.PublishYear</td>
+						<td>@book.ISBN</td>
+						<td>@book.PagesNumber</td>
+						<td>@(book.Available ? "Tak" : "Nie")</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+</section>

@@ -19,6 +19,9 @@ namespace LibraryManagerApp.Models
         [Required]
         public string ISBN {  get; set; }
 
+        [Column("wydawca")]
+        public string Publisher { get; set; }
+
         [Column("liczba_stron")]
         public int PagesNumber {  get; set; }
 

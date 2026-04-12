@@ -44,7 +44,9 @@ namespace LibraryManagerApp.Repositories
 
         public async Task<IEnumerable<Book>> GetAllAsync()
         {
-            return await _libraryContext.Books.ToListAsync();
+            return await _libraryContext.Books
+                .Include(x => x.Category)
+                .ToListAsync();
 
         }
 

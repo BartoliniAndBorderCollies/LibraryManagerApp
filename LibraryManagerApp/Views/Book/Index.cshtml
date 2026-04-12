@@ -14,8 +14,10 @@
 				<tr>
 					<th>Id</th>
 					<th>Tytuł</th>
+					<th>Kategoria</th>
 					<th>Rok wydania</th>
 					<th>ISBN</th>
+					<th>Wydawca</th>
 					<th>Liczba stron</th>
 					<th>Dostępna</th>
 				</tr>
@@ -26,8 +28,10 @@
 					<tr>
 						<td>@book.BookId</td>
 						<td>@book.Title</td>
+						<td>@book.Category?.Name</td>
 						<td>@book.PublishYear</td>
 						<td>@book.ISBN</td>
+						<td>@book.Publisher</td>
 						<td>@book.PagesNumber</td>
 						<td>@(book.Available ? "Tak" : "Nie")</td>
 					</tr>

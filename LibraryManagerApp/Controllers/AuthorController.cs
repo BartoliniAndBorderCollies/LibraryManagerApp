@@ -31,6 +31,7 @@ namespace LibraryManagerApp.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Author entity)
         {
             await AuthorService.AddAsync(entity);
@@ -39,6 +40,7 @@ namespace LibraryManagerApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAll()
         {
             await AuthorService.DeleteAllAsync();
@@ -46,6 +48,7 @@ namespace LibraryManagerApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try
@@ -83,6 +86,7 @@ namespace LibraryManagerApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, Author entity)
         {
 

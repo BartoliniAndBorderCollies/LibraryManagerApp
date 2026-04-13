@@ -5,5 +5,6 @@
 
         public List<Book> Books { get; set; } = new List<Book>();
         public Book Book { get; set; } = new Book();
+        public int? EditingBookId { get; set; }
     }
 }

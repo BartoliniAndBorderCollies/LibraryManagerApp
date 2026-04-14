@@ -168,18 +168,6 @@ body {
     margin-right: auto;
 }
 
-/*konfiguracja buttonów dla ca³ej strony Authors */
-.author-action-btn {
-    background-color: #7a4d2c;
-    border-color: #7a4d2c;
-    margin-top: 12px;
-}
-
-.author-action-btn:hover {
-    background-color: #5c3b22;
-    border-color: #5c3b22;
-}
-
 .authors-table-box {
     background-color: rgba(255, 255, 255, 0.78);
     padding: 25px;

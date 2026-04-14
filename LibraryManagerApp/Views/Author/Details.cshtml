@@ -23,7 +23,7 @@
 					<input type="text" name="LastName" value="@Model.LastName" class="form-control" />
 				</div>
 
-				<button type="submit" class="btn btn-primary author-action-btn">Zapisz</button>
+				<button type="submit" class="btn btn-primary general-settings-btn">Zapisz</button>
 				<a asp-action="Index" class="btn btn-secondary author-btn-secondary">Powrót</a>
 			</form>
 		}
@@ -34,7 +34,7 @@
 			<p><strong>Nazwisko:</strong> @Model.LastName</p>
 
 			<a asp-action="Details" asp-route-id="@Model.Id" asp-route-editMode="true"
-			   class="btn btn-primary author-action-btn">Edytuj</a>
+			   class="btn btn-primary general-settings-btn">Edytuj</a>
 
 			<a asp-action="Index" class="btn btn-secondary author-btn-secondary">Powrót</a>
 

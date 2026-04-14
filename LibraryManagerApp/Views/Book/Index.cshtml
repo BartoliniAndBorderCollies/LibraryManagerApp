@@ -20,6 +20,7 @@
 					<th>Wydawca</th>
 					<th>Liczba stron</th>
 					<th>Dostępna</th>
+					<th>Akcje</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,13 +28,108 @@
 				{
 					<tr>
 						<td>@book.BookId</td>
-						<td>@book.Title</td>
-						<td>@book.Category?.Name</td>
-						<td>@book.PublishYear</td>
-						<td>@book.ISBN</td>
-						<td>@book.Publisher</td>
-						<td>@book.PagesNumber</td>
-						<td>@(book.Available ? "Tak" : "Nie")</td>
+						<td>
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<input type="text" name="Title" value="@book.Title" class="form-control" />
+							}
+							else
+							{
+								@book.Title
+
+							}
+						</td>
+						<td>
+
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<select name="CategoryId" class="form-control">
+									@foreach (var category in Model.Categories)
+									{
+										if (category.CategoryId == book.CategoryId)
+										{
+											<option value="@category.CategoryId" selected>@category.Name</option>
+										}
+
+										else
+										{
+											<option value="@category.CategoryId">@category.Name</option>
+										}
+									}
+								</select>
+							}
+							else
+							{
+								@book.Category?.Name
+
+							}
+						</td>
+						<td>
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<input type="text" name="PublishYear" value="@book.PublishYear" class="form-control" />
+							}
+							else
+							{
+								@book.PublishYear
+							}
+						</td>
+						<td>
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<input type="text" name="ISBN" value="@book.ISBN" class="form-control" />
+							}
+							else
+							{
+								@book.ISBN
+							}
+						</td>
+						<td>
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<input type="text" name="Publisher" value="@book.Publisher" class="form-control" />
+							}
+							else
+							{
+								@book.Publisher
+							}
+						</td>
+						<td>
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<input type="text" name="PagesNumber" value="@book.PagesNumber" class="form-control" />
+							}
+							else
+							{
+								@book.PagesNumber
+							}
+						</td>
+						<td>
+							@if (Model.EditingBookId == book.BookId)
+							{
+								<input type="hidden" name="Available" value="false" />
+								<input type="checkbox" name="Available" value="true" @(book.Available ? "checked" : "") />
+
+							}
+							else
+							{
+								@(book.Available ? "Tak" : "Nie")
+							}
+						</td>
+						<td>
+							<form asp-action="Delete" method="post" style="display:inline;">
+								@Html.AntiForgeryToken()
+								<input type="hidden" name="id" value="@book.BookId" />
+								<button type="submit" class="btn btn-link p-0"
+										onclick="return confirm('Czy na pewno chcesz usunąć tę książkę?')">
+									Usuń
+								</button>
+							</form>
+
+
+
+							| <a asp-action="Edit" asp-route-id="@book.BookId">Edytuj</a>
+						</td>
 					</tr>
 				}
 			</tbody>

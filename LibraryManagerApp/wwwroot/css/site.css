@@ -30,6 +30,19 @@ body {
   text-align: start;
 }
 
+/* Ustawiam general settings */
+
+.general-settings-btn {
+    background-color: #7a4d2c;
+    border-color: #7a4d2c;
+    margin-top: 12px;
+}
+
+.general-settings-btn:hover {
+    background-color: #5c3b22;
+    border-color: #5c3b22;
+}
+
 /* Home page */
 .home-hero {
     display: flex;

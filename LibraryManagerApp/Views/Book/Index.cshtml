@@ -133,7 +133,16 @@
 					</tr>
 				}
 			</tbody>
+
+
 		</table>
+
+		@if (Model.EditingBookId != null)
+		{
+			<div class="text-center mt-3">
+				<button type="submit" class="btn btn-primary general-settings-btn">Zapisz</button>
+			</div>
+		}
 	</div>
 
 </section>

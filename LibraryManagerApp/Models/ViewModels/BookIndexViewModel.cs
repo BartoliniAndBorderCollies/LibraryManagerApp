@@ -4,7 +4,8 @@
     {
 
         public List<Book> Books { get; set; } = new List<Book>();
-        public Book Book { get; set; } = new Book();
+        public Book NewBook { get; set; } = new Book();
         public int? EditingBookId { get; set; }
+        public List<Category> Categories { get; set; } = new List<Category>();
     }
 }

@@ -9,10 +9,12 @@ namespace LibraryManagerApp.Controllers
     {
 
         private readonly BookService _bookService;
+        private readonly CategoryService _categoryService;
 
-        public BookController(BookService bookService)
+        public BookController(BookService bookService, CategoryService categoryService)
         {
             this._bookService = bookService;
+            this._categoryService = categoryService;
         }
 
 
@@ -54,11 +56,15 @@ namespace LibraryManagerApp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var books = await _bookService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync();
+
 
             var viewModel = new BookIndexViewModel
             {
                 Books = books.ToList(),
-                EditingBookId = id
+                EditingBookId = id,
+                Categories = categories.ToList()
+
             };
 
             return View("Index", viewModel);

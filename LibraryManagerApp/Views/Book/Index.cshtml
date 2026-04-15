@@ -118,8 +118,9 @@
                             <td>
                                 @if (Model.EditingBookId == book.BookId)
                                 {
-                                    <input type="hidden" name="Available" value="false" />
+                                    
                                     <input type="checkbox" name="Available" value="true" @(book.Available ? "checked" : null) />
+                                    <input type="hidden" name="Available" value="false" />
                                 }
                                 else
                                 {

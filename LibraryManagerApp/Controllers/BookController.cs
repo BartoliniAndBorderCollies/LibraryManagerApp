@@ -35,6 +35,16 @@ namespace LibraryManagerApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(Book book)
+        {
+
+            await _bookService.AddAsync(book);
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try

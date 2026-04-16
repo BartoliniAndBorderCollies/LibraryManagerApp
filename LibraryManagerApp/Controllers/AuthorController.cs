@@ -9,16 +9,16 @@ namespace LibraryManagerApp.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly AuthorService AuthorService;
+        private readonly AuthorService _authorService;
 
         public AuthorController(AuthorService authorService)
         {
-            this.AuthorService = authorService;
+            this._authorService = authorService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var authors = await AuthorService.GetAllAsync();
+            var authors = await _authorService.GetAllAsync();
 
             var viewModel = new AuthorIndexViewModel
             {
@@ -34,7 +34,7 @@ namespace LibraryManagerApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Author entity)
         {
-            await AuthorService.AddAsync(entity);
+            await _authorService.AddAsync(entity);
             return RedirectToAction("Index");
 
         }
@@ -43,7 +43,7 @@ namespace LibraryManagerApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAll()
         {
-            await AuthorService.DeleteAllAsync();
+            await _authorService.DeleteAllAsync();
             return RedirectToAction("Index");
         }
 
@@ -53,7 +53,7 @@ namespace LibraryManagerApp.Controllers
         {
             try
             {
-                await AuthorService.DeleteAsync(id);
+                await _authorService.DeleteAsync(id);
                 return RedirectToAction("Index");
             }
             catch (NotFoundInDatabaseException ex)
@@ -74,7 +74,7 @@ namespace LibraryManagerApp.Controllers
 
             try
             {
-                Author author = await AuthorService.GetByIdAsync(id);
+                Author author = await _authorService.GetByIdAsync(id);
                 return View("Details", author);
 
             }
@@ -92,7 +92,7 @@ namespace LibraryManagerApp.Controllers
 
             try
             {
-                Author updatedAuthor = await AuthorService.UpdateAsync(id, entity);
+                Author updatedAuthor = await _authorService.UpdateAsync(id, entity);
                 return View("Details", updatedAuthor);
 
             }

@@ -196,6 +196,15 @@ body {
     position: relative;
 }
 
+.books-form-box {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 16px;
+}
+
 .books-table-box {
     width: 90%;
     max-width: 1200px;

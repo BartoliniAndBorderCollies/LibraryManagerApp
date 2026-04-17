@@ -23,10 +23,12 @@ namespace LibraryManagerApp.Controllers
         {
 
             var books = await _bookService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync();
 
             var viewModel = new BookIndexViewModel
             {
-                Books = books.ToList()
+                Books = books.ToList(),
+                Categories = categories.ToList()
             };
 
 

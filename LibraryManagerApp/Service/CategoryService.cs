@@ -1,32 +1,35 @@
-﻿using LibraryManagerApp.Models;
+﻿using LibraryManagerApp.Exceptions;
+using LibraryManagerApp.Models;
 using LibraryManagerApp.Repositories;
 
 namespace LibraryManagerApp.Service
 {
-    public class CategoryService : IService<Category>
+    public class CategoryService
     {
 
-        private readonly CategoryRepository _categoryRepository;
+        private readonly IRepository<Category> _categoryRepository;
 
-        public CategoryService(CategoryRepository categoryRepository)
+        public CategoryService(IRepository<Category> categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
 
 
-        public Task<Category> AddAsync(Category entity)
+        public async Task<Category> AddAsync(Category entity)
         {
-            throw new NotImplementedException();
+            return await _categoryRepository.AddAsync(entity);
         }
 
-        public Task DeleteAllAsync()
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
-        }
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
+            bool deleted = await _categoryRepository.DeleteAsync(id);
+
+            if (!deleted)
+            {
+                throw new NotFoundInDatabaseException($"Category with id: {id} was not found");
+            }
+
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()
@@ -34,14 +37,5 @@ namespace LibraryManagerApp.Service
            return await _categoryRepository.GetAllAsync();
         }
 
-        public Task<Category> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Category> UpdateAsync(int id, Category entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

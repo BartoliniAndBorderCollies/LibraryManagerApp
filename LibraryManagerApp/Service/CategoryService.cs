@@ -9,7 +9,7 @@ namespace LibraryManagerApp.Service
 
         private readonly IRepository<Category> _categoryRepository;
 
-        public CategoryService(IRepository<Category> categoryRepository)
+        public CategoryService(CategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

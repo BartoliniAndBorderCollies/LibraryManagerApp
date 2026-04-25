@@ -41,54 +41,56 @@
 
 		<h2>Lista dostępnych kategorii: </h2>
 
-		<div>
 
-			<table class="table table-bordered">
+		@* ta klasa jest z bootstrapa *@
+		<table class="table table-bordered">
 
-				<thead>
+			<thead>
 
+				<tr>
+
+					<th>Id</th>
+					<th>Name</th>
+					<th>Akcje</th>
+
+				</tr>
+
+			</thead>
+
+			<tbody>
+
+				@foreach (var category in Model.Categories)
+				{
 					<tr>
 
-						<th>Id</th>
-						<th>Name</th>
-						<th>Akcje</th>
+						<td>@category.CategoryId</td>
+						<td>@category.Name</td>
+						<td>
+
+							<form asp-controller="Category" asp-action="Delete" method="post" style="display:inline;">
+								@Html.AntiForgeryToken()
+
+								<input type="hidden" name="id" value="@category.CategoryId" />
+								<button type="submit" class="btn btn-link p-0" onclick="return confirm('Czy na pewno usunąć tę kategorię?')">Usuń</button>
+
+
+							</form>
+
+						</td>
 
 					</tr>
 
-				</thead>
+				}
 
-				<tbody>
-
-					@foreach(var category in Model.Categories)
-					{
-						<tr>
-
-							<td>@category.CategoryId</td>
-							<td>@category.Name</td>
-							<td>Usuń</td>
+			</tbody>
 
 
-						</tr>
-						
-					}
+		</table>
 
-
-				</tbody>
-
-
-
-
-
-
-			</table>
-
-
-
-
-		</div>
 
 
 	</div>
+
 
 
 

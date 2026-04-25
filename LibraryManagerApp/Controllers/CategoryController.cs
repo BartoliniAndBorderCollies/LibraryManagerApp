@@ -1,4 +1,5 @@
-﻿using LibraryManagerApp.Models;
+﻿using LibraryManagerApp.Exceptions;
+using LibraryManagerApp.Models;
 using LibraryManagerApp.Models.ViewModels;
 using LibraryManagerApp.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,28 @@ namespace LibraryManagerApp.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            try
+            {
+
+                await _categoryService.DeleteAsync(id);
+                return RedirectToAction("Index");
+
+
+            }
+            catch (NotFoundInDatabaseException ex)
+            {
+
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Index");
+
+            }
         }
     }
 }

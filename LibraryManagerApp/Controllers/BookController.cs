@@ -58,7 +58,7 @@ namespace LibraryManagerApp.Controllers
             catch (NotFoundInDatabaseException ex)
             {
                 TempData["Error"] = ex.Message;
-                return RedirectToAction("Error");
+                return RedirectToAction("Index");
             }
 
         }

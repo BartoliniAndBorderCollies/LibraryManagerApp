@@ -14,19 +14,29 @@
 
 			<h2>Logowanie: </h2>
 
+			<form asp-controller="Home" asp-action="Login" method="post">
 
 
-			<div class="form-group mb-3">
-				<label for="login">Login</label>
-				<input type="text" id="login" class="form-control home-login-input"/>
-			</div>
 
-			<div class="form-group mb-3">
-				<label for="password">Password</label>
-				<input type="text" id="password" class="form-control home-login-input"/>
+				<div class="form-group mb-3">
+					<label for="login">Login</label>
+					<input type="text" id="login" name="Login" class="form-control home-login-input" />
+				</div>
 
-			</div>
+				<div class="form-group mb-3">
+					<label for="password">Password</label>
+					<input type="password" id="password" name="Password" class="form-control home-login-input" />
 
+				</div>
+
+
+
+				<button type="submit" class="btn btn-primary">Log in</button>
+
+				<a class="btn btn-secondary">I forgot login/password</a>
+
+
+			</form>
 
 		</div>
 

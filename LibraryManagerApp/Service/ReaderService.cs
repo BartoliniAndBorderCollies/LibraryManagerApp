@@ -18,6 +18,8 @@ namespace LibraryManagerApp.Service
 
         public Task<Reader> AddAsync(Reader entity)
         {
+            entity.RegistrationDate = DateTime.Now;
+
             return _readerRepository.AddAsync(entity);
         }
 

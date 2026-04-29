@@ -32,6 +32,6 @@ namespace LibraryManagerApp.Models
         public bool Active { get; set; }
 
         //nawigacyjna właściwość dla EF Core
-        public ICollection<Rental> RentalList { get; set; }
+        public ICollection<Rental> RentalList { get; set; } = new List<Rental>();
     }
 }

@@ -15,6 +15,8 @@ builder.Services.AddScoped<BookService>();
 builder.Services.AddScoped<BookRepository>();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<ReaderService>();
+builder.Services.AddScoped<ReaderRepository>();
 
 
 //ustawiam SQLServer jako silnik bazy i rejestrujê klasê LibraryContext do Depenendy Injection

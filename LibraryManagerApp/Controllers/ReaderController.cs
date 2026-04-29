@@ -27,5 +27,16 @@ namespace LibraryManagerApp.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(Reader reader)
+        {
+
+            await _readerService.AddAsync(reader);
+
+            return RedirectToAction("Index");
+
+        }
     }
 }

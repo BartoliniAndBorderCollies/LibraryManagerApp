@@ -8,12 +8,49 @@
 <section class="readers-page">
 
 
+
 	<div class="readers-form-box">
+
 
 		<h2>Dodaj nowego czytelnika</h2>
 
 
+		<form asp-controller="Reader" asp-action="Add" method="post">
+			@Html.AntiForgeryToken()
 
+
+			<div class="form-group">
+				<label for="firstName">Imię: </label>
+				<input type="text" id="firstName" name="FirstName" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="lastName">Nazwisko: </label>
+				<input type="text" id="lastName" name="LastName" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label for="email">Email: </label>
+				<input type="email" id="email" name="Email" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="telephone">Numer telefonu: </label>
+				<input type="text" id="telephone" name="Telephone" class="form-control"/>
+			</div>
+
+			<div class="form-group">
+				<label for="active">Aktywny: </label>
+				<input type="checkbox" id="active" name="Active" value="true" />
+				<input type="hidden" name="Active" value="false" />
+			</div>
+
+
+			<div class="text-center mt-3">
+				<button type="submit" class="btn btn-primary general-settings-btn">Zapisz</button>
+			</div>
+
+		</form>
 
 
 

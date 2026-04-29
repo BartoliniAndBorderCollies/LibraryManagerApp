@@ -4,6 +4,7 @@
 	ViewData["Title"] = "Readers";
 }
 
+
 <section class="readers-page">
 
 
@@ -14,14 +15,67 @@
 
 
 
+
+
 	</div>
 
 
 
 
+	<div class="readers-table-box">
+
+
+		<h2>Lista czytelników:</h2>
 
 
 
+		<table class="table table-bordered">
+
+			<thead>
+
+				<tr>
+
+					<th>Id</th>
+					<th>Imię</th>
+					<th>Nazwisko</th>
+					<th>Email</th>
+					<th>Telefon</th>
+					<th>Data rejestracji</th>
+					<th>Aktywny</th>
+					<th>Lista książek</th>
+
+				</tr>
+
+			</thead>
+			<tbody>
+
+				@foreach (var reader in Model.Readers)
+				{
+					<tr>
+
+						<td>@reader.ReaderId</td>
+						<td>@reader.FirstName</td>
+						<td>@reader.LastName</td>
+						<td>@reader.Email</td>
+						<td>@reader.Telephone</td>
+						<td>@reader.RegistrationDate</td>
+						<td>@reader.Active</td>
+
+						<td>
+							@foreach (var book in reader.RentalList)
+							{
+								<div>- @book.Book?.Title</div>
+							}
+						</td>
+
+					</tr>
+				}
+
+			</tbody>
+
+		</table>
+
+	</div>
 
 
 </section>

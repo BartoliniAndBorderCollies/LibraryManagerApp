@@ -17,13 +17,15 @@ namespace LibraryManagerApp.Controllers
         }
 
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? editingReaderId)
         {
             var readers = await _readerService.GetAllAsync();
 
             ReaderIndexViewModel viewModel = new ReaderIndexViewModel
             {
-                Readers = readers.ToList()
+                Readers = readers.ToList(),
+                EditingReaderId = editingReaderId
+
             };
 
             return View(viewModel);

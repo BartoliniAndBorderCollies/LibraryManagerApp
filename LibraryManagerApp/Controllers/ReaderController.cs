@@ -1,4 +1,5 @@
-﻿using LibraryManagerApp.Models;
+﻿using LibraryManagerApp.Exceptions;
+using LibraryManagerApp.Models;
 using LibraryManagerApp.Models.ViewModels;
 using LibraryManagerApp.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,24 @@ namespace LibraryManagerApp.Controllers
 
             return RedirectToAction("Index");
 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _readerService.DeleteAsync(id);
+                return RedirectToAction("Index");
+            }
+            catch (NotFoundInDatabaseException ex)
+            {
+
+                TempData["Error"] = ex.Message;
+                return RedirectToAction("Index");
+
+            }
         }
     }
 }

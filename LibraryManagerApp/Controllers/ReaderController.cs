@@ -59,5 +59,25 @@ namespace LibraryManagerApp.Controllers
 
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, Reader reader)
+        {
+
+            try
+            {
+                await _readerService.UpdateAsync(reader.ReaderId, reader);
+                return RedirectToAction("Index");
+            }
+            catch (NotFoundInDatabaseException ex)
+            {
+
+                {
+                    TempData["Error"] = ex.Message;
+                    return RedirectToAction("Index");
+                }
+            }
+        }
     }
 }

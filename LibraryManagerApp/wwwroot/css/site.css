@@ -215,6 +215,10 @@ body {
     border-radius: 16px;
 }
 
+.books-table-box table tbody tr:hover td {
+    background-color: rgba(139, 109, 74, 0.28);
+}
+
 /* Category page*/
 
 .categories-page {
@@ -243,6 +247,10 @@ body {
     background-color: rgba(255, 255, 255, 0.85);
     padding: 30px;
     border-radius: 16px;
+}
+
+.categories-table-box table tbody tr:hover td {
+    background-color: rgba(139, 109, 74, 0.28);
 }
 
 /* Reader */
@@ -276,6 +284,10 @@ body {
 
 .readers-btn-secondary {
     margin-top: 12px;
+}
+
+.readers-table-box table tbody tr:hover td {
+    background-color: rgba(139, 109, 74, 0.28);
 }
 
 

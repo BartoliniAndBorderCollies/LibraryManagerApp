@@ -36,7 +36,7 @@
 
 			<div class="form-group">
 				<label for="telephone">Numer telefonu: </label>
-				<input type="text" id="telephone" name="Telephone" class="form-control"/>
+				<input type="text" id="telephone" name="Telephone" class="form-control" />
 			</div>
 
 			<div class="form-group">
@@ -64,53 +64,157 @@
 
 		<h2>Lista czytelników:</h2>
 
+		<form asp-controller="Reader" asp-action="Update" method="post">
+			@Html.AntiForgeryToken()
 
+			<table class="table table-bordered">
 
-		<table class="table table-bordered">
+				<thead>
 
-			<thead>
-
-				<tr>
-
-					<th>Id</th>
-					<th>Imię</th>
-					<th>Nazwisko</th>
-					<th>Email</th>
-					<th>Telefon</th>
-					<th>Data rejestracji</th>
-					<th>Aktywny</th>
-					<th>Lista książek</th>
-
-				</tr>
-
-			</thead>
-			<tbody>
-
-				@foreach (var reader in Model.Readers)
-				{
 					<tr>
 
-						<td>@reader.ReaderId</td>
-						<td>@reader.FirstName</td>
-						<td>@reader.LastName</td>
-						<td>@reader.Email</td>
-						<td>@reader.Telephone</td>
-						<td>@reader.RegistrationDate</td>
-						<td>@reader.Active</td>
-
-						<td>
-							@foreach (var book in reader.RentalList)
-							{
-								<div>- @book.Book?.Title</div>
-							}
-						</td>
+						<th>Id</th>
+						<th>Imię</th>
+						<th>Nazwisko</th>
+						<th>Email</th>
+						<th>Telefon</th>
+						<th>Data rejestracji</th>
+						<th>Aktywny</th>
+						<th>Lista książek</th>
+						<th>Akcje</th>
 
 					</tr>
-				}
 
-			</tbody>
+				</thead>
+				<tbody>
 
-		</table>
+					@foreach (var reader in Model.Readers)
+					{
+						<tr>
+
+							<td>
+
+								@if (Model.EditingReaderId == reader.ReaderId)
+								{
+									<input type="hidden" name="ReaderId" value="@reader.ReaderId" />
+									<input type="hidden" name="RegistrationDate" value="@reader.RegistrationDate" />
+								}
+
+								@reader.ReaderId
+							</td>
+
+							<td>
+								@if (Model.EditingReaderId == reader.ReaderId)
+								{
+									<input type="text" name="FirstName" value="@reader.FirstName" class="form-control" />
+								}
+								else
+								{
+									@reader.FirstName
+								}
+							</td>
+
+							<td>
+								@if (Model.EditingReaderId == reader.ReaderId)
+								{
+
+									<input type="text" name="LastName" value="@reader.LastName" class="form-control" />
+
+								}
+								else
+								{
+									@reader.LastName
+								}
+							</td>
+
+							<td>
+								@if (Model.EditingReaderId == reader.ReaderId)
+								{
+									<input type="email" name="Email" value="@reader.Email" class="form-control" />
+
+								}
+								else
+								{
+
+									@reader.Email
+								}
+							</td>
+
+							<td>
+
+								@if (Model.EditingReaderId == reader.ReaderId)
+								{
+									<input type="text" name="Telephone" value="@reader.Telephone" class="form-control" />
+								}
+								else
+								{
+									@reader.Telephone
+								}
+							</td>
+
+							<td>@reader.RegistrationDate</td>
+
+							<td>
+
+								@if (Model.EditingReaderId == reader.ReaderId)
+								{
+									<input type="checkbox" name="Active" value="true" @(reader.Active ? "checked" : null) />
+									<input type="hidden" name="Active" value="false" />
+								}
+								else
+								{
+
+									@reader.Active
+								}
+							</td>
+
+							<td>
+								@foreach (var book in reader.RentalList)
+								{
+									<div>- @book.Book?.Title</div>
+								}
+							</td>
+							<td>
+
+								<button type="submit"
+										formaction="@Url.Action("Delete", "Reader")"
+										formmethod="post"
+										name="id"
+										value="@reader.ReaderId"
+										class="btn btn-link p-0"
+										onclick="return confirm('Czy na pewno chcesz usunąć?')">
+									Usuń
+								</button>
+
+								<a asp-controller="Reader" asp-action="Index" asp-route-editingReaderId="@reader.ReaderId" class="btn btn-link p-0">Edytuj</a>
+
+							</td>
+
+						</tr>
+					}
+
+
+
+				</tbody>
+
+
+
+			</table>
+
+
+
+
+			@if (Model.EditingReaderId != null)
+			{
+				<div class="text-center mt-3">
+					<button type="submit" class="btn btn-primary general-settings-btn">Zaktualizuj</button>
+					<a asp-action="Index" class="btn btn-secondary readers-btn-secondary">Anuluj</a>
+				</div>
+			}
+
+
+
+		</form>
 
 	</div>
 
